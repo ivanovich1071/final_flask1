@@ -1,0 +1,25 @@
+.menu-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.menu-card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+}

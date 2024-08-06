@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-center">
+    <h1>Добро пожаловать на сайт "Ланч с доставкой"</h1>
+    <p>Заказывайте любимые блюда прямо к вам домой!</p>
+    <a href="{{ url_for('main.menu') }}" class="btn btn-primary">Посмотреть меню</a>
+</section>
+{% endblock %}

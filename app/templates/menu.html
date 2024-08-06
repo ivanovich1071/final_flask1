@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="menu" class="menu-section">
+    <div class="container">
+        <div class="row">
+            {% for item in menu_items %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='image/' + item.image) }}" class="card-img-top" alt="{{ item.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.price }} руб</p>
+                        <form action="{{ url_for('main.add_to_order') }}" method="POST">
+                            <input type="hidden" name="item_name" value="{{ item.name }}">
+                            <input type="hidden" name="price" value="{{ item.price }}">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="decreaseQuantity(this)">-</button>
+                                </div>
+                                <input type="number" name="quantity" value="1" min="1" class="form-control quantity-input" readonly>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script>
+    function increaseQuantity(button) {
+        var quantityInput = button.parentElement.parentElement.querySelector('.quantity-input');
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    function decreaseQuantity(button) {
+        var quantityInput = button.parentElement.parentElement.querySelector('.quantity-input');
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+    }
+</script>
+{% endblock %}
